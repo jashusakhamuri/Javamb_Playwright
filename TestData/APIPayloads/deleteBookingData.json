@@ -1,0 +1,32 @@
+{
+  "deleteMePayload": {
+    "firstname": "DeleteMe",
+    "lastname": "Test",
+    "totalprice": 111,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-12-01",
+      "checkout": "2025-12-05"
+    }
+  },
+  "doubleDeletePayload": {
+    "firstname": "DoubleDelete",
+    "lastname": "Test",
+    "totalprice": 222,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-12-10",
+      "checkout": "2025-12-15"
+    }
+  },
+  "tokenDeletePayload": {
+    "firstname": "TokenDelete",
+    "lastname": "Test",
+    "totalprice": 333,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-12-20",
+      "checkout": "2025-12-25"
+    }
+  }
+}

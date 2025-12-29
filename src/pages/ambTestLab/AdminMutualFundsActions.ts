@@ -1,0 +1,86 @@
+﻿import { Page, expect } from '@playwright/test';
+import { AdimnMutualFunds } from '../../locators/ambTestLab/adminMutualFunds';
+import { DashboardPage } from '../../locators/ambTestLab/adminDashBoard'
+import logger from '../../utils/logger';
+
+export class AdminMutualFundsActions {
+    readonly locators: AdimnMutualFunds;
+    readonly dashboardLocators: DashboardPage;  
+
+
+    constructor(page: Page) {
+        this.locators = new AdimnMutualFunds(page);
+        this.dashboardLocators = new DashboardPage(page);
+    }
+
+    async navigateToMutualFundsSection() {
+        logger.info("Navigating to Mutual Funds section...");
+        await this.dashboardLocators.DashboardMutualFundsOption.click();
+    }
+    async addFund(
+        name: string,
+        code: string,
+        category: string,
+        image: string,
+        offerPrice: string,
+        riskLevel: string,
+        nav: string,
+        originalPrice: string,
+        yearReturn: string,
+        threeYearReturn: string,
+        fiveYearReturn: string,
+        fundHouse: string,
+        location: string
+    ) {
+        logger.info("Adding new fund...");
+
+        await this.locators.AddFundButton.click();
+        await this.locators.ClickToSeeAddFundForm.click();
+
+        await this.locators.AddFundName.fill(name);
+        await this.locators.AddFundCode.fill(code);
+        await this.locators.AddCategoryDropDown.selectOption(category);
+        await this.locators.Addimage.fill(image);
+        await this.locators.AddOfferPrice.fill(offerPrice);
+        await this.locators.AddRiskLevel.selectOption(riskLevel);
+        await this.locators.AddFundNav.fill(nav);
+        await this.locators.AddOriginalPrice.fill(originalPrice);
+        await this.locators.AddYearReturn.fill(yearReturn);
+        await this.locators.Add3YearReturn.fill(threeYearReturn);
+        await this.locators.Addd5YearReturn.fill(fiveYearReturn);
+        await this.locators.AddFundHouse.fill(fundHouse);
+        await this.locators.location.fill(location);
+
+        await this.locators.SaveButton.click();
+        logger.info("✅ Fund added successfully");
+    }
+
+    async editFund(
+        newName: string,
+        newCode: string,
+        newCategory: string,
+        newImage: string,
+        newOfferPrice: string,
+        newRiskLevel: string
+    ) {
+        logger.info("Editing fund...");
+
+        await this.locators.EditButton.click();
+
+        await this.locators.EditFundName.fill(newName);
+        await this.locators.EditFundCode.fill(newCode);
+        await this.locators.EditCategoryDropDown.selectOption(newCategory);
+        await this.locators.Editimage.fill(newImage);
+        await this.locators.EditOfferPrice.fill(newOfferPrice);
+        await this.locators.EditRiskLevel.selectOption(newRiskLevel);
+
+        await this.locators.UpdateFund.click();
+        logger.info("✅ Fund edited successfully");
+    }
+
+    async deleteFund() {
+        logger.info("Deleting fund...");
+        await this.locators.DeleteButton.click();
+        logger.info("✅ Fund deleted successfully");
+    }
+}

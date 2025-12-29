@@ -1,0 +1,47 @@
+{
+  "validPayload": {
+    "firstname": "Updated",
+    "lastname": "User",
+    "totalprice": 222,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-12-10",
+      "checkout": "2025-12-15"
+    },
+    "additionalneeds": "Dinner"
+  },
+  "minimalPayload": {
+    "firstname": "Mini",
+    "lastname": "Update",
+    "totalprice": 400,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-12-21",
+      "checkout": "2025-12-26"
+    }
+  },
+  "additionalNeedsPayload": {
+    "firstname": "Needs",
+    "lastname": "Updated",
+    "totalprice": 600,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-12-31",
+      "checkout": "2026-01-06"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  "missingFieldsPayload": {
+    "firstname": "OnlyName"
+  },
+  "wrongEndpointPayload": {
+    "firstname": "WrongEndpoint"
+  },
+  "invalidTypesPayload": {
+    "firstname": 12345,
+    "lastname": true,
+    "totalprice": "not-a-number",
+    "depositpaid": "yes",
+    "bookingdates": "invalid-object"
+  }
+}
