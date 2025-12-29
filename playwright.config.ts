@@ -132,7 +132,7 @@ export default defineConfig({
         ['line'],
         ['list'],
         ['junit', { outputFile: 'results/results.xml' }],
-        ['allure-playwright'],
+
     ],
 
     use: {
