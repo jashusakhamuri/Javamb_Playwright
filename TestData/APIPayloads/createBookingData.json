@@ -1,0 +1,66 @@
+{
+  "validPayload": {
+    "firstname": "John",
+    "lastname": "Doe",
+    "totalprice": 123,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-12-01",
+      "checkout": "2025-12-05"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  "minimalPayload": {
+    "firstname": "Jane",
+    "lastname": "Smith",
+    "totalprice": 200,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-12-10",
+      "checkout": "2025-12-15"
+    }
+  },
+  "additionalNeedsPayload": {
+    "firstname": "Alice",
+    "lastname": "Brown",
+    "totalprice": 300,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-12-20",
+      "checkout": "2025-12-25"
+    },
+    "additionalneeds": "Lunch"
+  },
+  "invalidDatePayload": {
+    "firstname": "BadDate",
+    "lastname": "Test",
+    "totalprice": 150,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "12-01-2025",
+      "checkout": "12-05-2025"
+    },
+    "additionalneeds": "Dinner"
+  },
+  "unexpectedPropertyPayload": {
+    "firstname": "Extra",
+    "lastname": "Field",
+    "totalprice": 100,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-12-01",
+      "checkout": "2025-12-05"
+    },
+    "extrafield": "not-allowed"
+  },
+  "emptyStringsPayload": {
+    "firstname": "",
+    "lastname": "",
+    "totalprice": 0,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "",
+      "checkout": ""
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "ADD": {
+    "name": "BAG",
+    "description": "Leather Bag",
+    "price": "150",
+    "stock": "30",
+    "category": "Accessories",
+    "rating": "4.5",
+    "imageUrl": "https://imgs.search.brave.com/gVuNzY_70iq3wkG_Tnx0N59LHIIhGpyEIq4AHhhFhp4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9w/YXBlci1tYWRlLXNo/b3BwaW5nLWJhZ3Nf/MjMtMjE0NzY1MjA1/NS5qcGc_c2VtdD1h/aXNfaHlicmlkJnc9/NzQwJnE9ODA"
+  },
+
+
+  "Edit": {
+    "newName": "BAG-Updated",
+    "newPrice": "180",
+    "newStock": "25",
+    "newRating": "4.7",
+    "newImageUrl": "https://imgs.search.brave.com/gVuNzY_70iq3wkG_Tnx0N59LHIIhGpyEIq4AHhhFhp4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9w/YXBlci1tYWRlLXNo/b3BwaW5nLWJhZ3Nf/MjMtMjE0NzY1MjA1/NS5qcGc_c2VtdD1h/aXNfaHlicmlkJnc9/NzQwJnE9ODA"
+  },
+  "AdminAddFund": {
+
+    "name": "Test Growth Fund",
+    "code": "TGF001",
+    "category": "Equity",
+    "image": "https://example.com/fund.png",
+    "offerPrice": "500",
+    "riskLevel": "Medium",
+    "nav": "520",
+    "originalPrice": "480",
+    "yearReturn": "12",
+    "threeYearReturn": "36",
+    "fiveYearReturn": "60",
+    "fundHouse": "AMB Fund House",
+    "location": "Hyderabad"
+
+  },
+  "AdminEditFund": {
+    "newName": "Updated Growth Fund",
+    "newCode": "UGF001",
+    "newCategory": "Debt",
+    "newImage": "https://example.com/newfund.png",
+    "newOfferPrice": "600",
+    "newRiskLevel": "High"
+  }
+
+
+}   

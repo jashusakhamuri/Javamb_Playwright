@@ -1,0 +1,30 @@
+{
+  "userProfile": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "mobile": "9876543210",
+    "email": "john.doe@example.com"
+  },
+
+  "AdminSettingData": {
+    "newName": "Super Admin"
+  },
+
+  "SipCalculatorData": [
+    {
+      "monthlyAmount": "5000",
+      "years": "10",
+      "expectedReturn": "12"
+    },
+    {
+      "monthlyAmount": "10000",
+      "years": "15",
+      "expectedReturn": "10"
+    },
+    {
+      "monthlyAmount": "20000",
+      "years": "20",
+      "expectedReturn": "8"
+    }
+  ]
+}
