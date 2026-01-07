@@ -21,6 +21,14 @@ import logger from '../../utils/logger';
 // ========================================================
 //  USER ACTIONS CLASS
 // ========================================================
+/**
+ * UserActions
+ *
+ * Groups common end-user flows used in E2E scenarios (Funds, Portfolio, SIP Calculator, Profile).
+ * Responsibilities:
+ * - Coordinate page objects (FundsPage, Portfolio, Sip_Calculator, UserProfile) to perform common user journeys.
+ * - Keep interactions descriptive and idempotent so tests can create and clean up state reliably.
+ */
 class UserActions {
     private readonly funds: FundsPage;
     private readonly portfolio: Portfolio;
@@ -36,6 +44,11 @@ class UserActions {
         this.dashboard = new UserDashboard(page);
     }
 
+    /**
+     * fundsFlow
+     * - Navigates to the Funds tab, verifies the heading and performs a buy+add flow for a sample fund (Emily Johnson).
+     * - Tests should provide unique data or cleanup steps to avoid collisions when re-running.
+     */
     async fundsFlow() {
         logger.info('[FundsPage] Navigate to Funds tab');
         await this.funds.fundsTab.click();
@@ -45,19 +58,12 @@ class UserActions {
         await this.funds.buyNowButtonForEmilyJohnson.click();
         await this.funds.addButtonForEmilyJohnson.click();
     }
-    //async fundsFlow() {
-    //    logger.info('[FundsPage] Navigate to Funds tab');
-    //    await this.funds.fundsTab.click();
-    //    await this.funds.discoverFundsHeading.waitFor({ state: 'visible' });
+   
 
-    //    logger.info('[FundsPage] Add Emily Johnson to portfolio');
-    //    await this.funds.addButtonForEmilyJohnson.waitFor({ state: 'visible' });
-    //    await this.funds.addButtonForEmilyJohnson.click();
-
-    //    logger.info('[FundsPage] Go to Portfolio');
-    //    await this.funds.portfolioTab.click();
-    //}
-
+    /**
+     * portfolioFlow
+     * - Switches to portfolio, validates cart and totals, proceeds to payment, and verifies success.
+     */
     async portfolioFlow() {
         await this.funds.portfolioTab.click();
 
@@ -74,6 +80,10 @@ class UserActions {
         await this.portfolio.ViewPurchaseSummary.click();
     }
 
+    /**
+     * sipCalculatorFlow
+     * - Opens SIP calculator, inputs example values, submits, and verifies results are displayed.
+     */
     async sipCalculatorFlow() {
         await this.funds.sipCalculationsTab.click();
         await this.sip.minimunAmount.waitFor({ state: 'visible' });
@@ -87,6 +97,10 @@ class UserActions {
         await this.sip.estfutureValue.waitFor({ state: 'visible' });
     }
 
+    /**
+     * profileFlow
+     * - Navigates to profile, edits name and mobile number, saves, and verifies the updated details are visible.
+     */
     async profileFlow() {
         await this.profile.ProfileTab.click();
         await this.profile.EditProfilebutton.click();
@@ -101,6 +115,10 @@ class UserActions {
         await this.profile.EmailID.waitFor({ state: 'visible' });
     }
 
+    /**
+     * logoutFlow
+     * - Logs the user out via the funds logout tab; intended for test cleanup.
+     */
     async logoutFlow() {
         logger.info('[User] Logging out');
         await this.funds.logoutTab.click();
@@ -110,6 +128,14 @@ class UserActions {
 // ========================================================
 //  ADMIN ACTIONS CLASS
 // ========================================================
+/**
+ * AdminActions
+ *
+ * Groups common administrative flows (Mutual Funds, Settings, Users, Purchases, E-Commerce, SIP Calculator).
+ * Responsibilities:
+ * - Coordinate admin page objects to perform add/edit/delete and reporting operations.
+ * - Perform lightweight verifications and log detailed progress for troubleshooting.
+ */
 class AdminActions {
     private readonly dashboard: AdminDashboard;
     private readonly settings: AdminSetting;
@@ -129,35 +155,21 @@ class AdminActions {
         this.sip = new SipCalculatorPage(page);
     }
 
+    /**
+     * openMutualFunds
+     * - Navigates to the Mutual Funds admin section via the dashboard.
+     */
     async openMutualFunds() {
         logger.info("Navigating to Mutual Funds...");
         await this.dashboard.DashboardMutualFundsOption.click();
     }
 
-    //async addNewFund() {
-    //    logger.info("Adding new fund...");
-
-    //    await this.funds.AddFundButton.click();
-    //    await this.funds.ClickToSeeAddFundForm.click();
-
-    //    await this.funds.AddFundName.fill('Test Growth Fund');
-    //    await this.funds.AddFundCode.fill('TGF001');
-    //    await this.funds.AddCategoryDropDown.selectOption({ label: 'Equity' });
-    //    await this.funds.Addimage.fill('https://example.com/fund.png');
-    //    await this.funds.AddOfferPrice.fill('500');
-    //    await this.funds.AddRiskLevel.selectOption({ label: 'Medium' });
-    //    await this.funds.AddFundNav.fill('520');
-    //    await this.funds.AddOriginalPrice.fill('480');
-    //    await this.funds.AddYearReturn.fill('12');
-    //    await this.funds.Add3YearReturn.fill('36');
-    //    await this.funds.Addd5YearReturn.fill('60');
-    //    await this.funds.AddFundHouse.fill('AMB Fund House');
-    //    await this.funds.location.fill('Hyderabad');
-
-    //    await this.funds.SaveButton.click();
-
-    //    logger.info("Fund saved successfully.");
-    //}
+   
+    /**
+     * addNewFund
+     * - Opens the Add Fund form, fills in fund details and submits the form.
+     * - Use unique identifiers (e.g., fund code) to keep tests idempotent and easy to clean up.
+     */
     async addNewFund(
         name: string,
         code: string,
@@ -198,6 +210,10 @@ class AdminActions {
     }
 
 
+    /**
+     * editFund
+     * - Opens the Edit dialog for the selected fund, updates fields and saves.
+     */
     async editFund(
         newName: string,
         newCode: string,
@@ -223,6 +239,10 @@ class AdminActions {
         logger.info(`[AdminMutualFunds] Fund updated successfully to "${newName}".`);
     }
 
+    /**
+     * updateAdminSettings
+     * - Navigates to Settings and updates admin name; intended for basic admin settings validation.
+     */
     async updateAdminSettings() {
         logger.info("Navigating to Settings...");
         await this.dashboard.DashboardSettings.click();
@@ -233,6 +253,10 @@ class AdminActions {
         logger.info("Settings updated.");
     }
 
+    /**
+     * openUserManagement
+     * - Navigates to Users, waits for User Management to load, optionally toggles to table view, and validates presence/absence of users.
+     */
     async openUserManagement() {
         logger.info("Navigating to Users...");
 
@@ -258,6 +282,10 @@ class AdminActions {
         logger.info("Users section viewed successfully.");
     }
 
+    /**
+     * openPurchases
+     * - Navigates to Purchases, waits for page and summary cards, and logs table status if rows are present.
+     */
     async openPurchases() {
         logger.info("Navigating to Purchases...");
 
@@ -285,6 +313,10 @@ class AdminActions {
     }
 
 
+    /**
+     * openSipCalculatorData
+     * - Navigates to the SIP Calculator Data admin page, verifies page header and optionally validates table/chart presence.
+     */
     async openSipCalculatorData() {
         logger.info("Navigating to SIP Calculator Data...");
 
@@ -310,6 +342,10 @@ class AdminActions {
     }
 
 
+    /**
+     * logout
+     * - Logs the admin out via the dashboard logout button; used for test cleanup.
+     */
     async logout() {
         logger.info("Admin logging out...");
         await this.dashboard.logoutButton.click();
@@ -319,6 +355,15 @@ class AdminActions {
 // ========================================================
 //  MASTER WRAPPER CLASS
 // ========================================================
+/**
+ * E2EActions
+ *
+ * Top-level wrapper that exposes grouped `user` and `admin` action objects for end-to-end tests.
+ * Usage:
+ *   const actions = new E2EActions(page);
+ *   await actions.user.fundsFlow();
+ *   await actions.admin.openPurchases();
+ */
 export class E2EActions {
     readonly user: UserActions;
     readonly admin: AdminActions;

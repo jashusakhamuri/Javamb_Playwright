@@ -2,6 +2,19 @@
 import { Ecommerce } from "../../locators/ambTestLab/adminEcommerce"
 import { DashboardPage } from "../../locators/ambTestLab/adminDashBoard" 
 import logger from "../../utils/logger"
+
+/**
+ * EcommercePage (Admin)
+ *
+ * Encapsulates admin-side interactions with the E-Commerce area of AmbTestLab.
+ * Responsibilities:
+ * - Navigate to the E-Commerce admin page from the dashboard.
+ * - Add, edit, delete, export, and verify product cards.
+ *
+ * Notes:
+ * - Methods focus on UI interactions and logging; add `expect` checks in methods or in calling specs for stricter validation.
+ * - Keep product test data unique to maintain idempotency; consider cleanup steps in tests that add/delete products.
+ */
 export class EcommercePage {
     private readonly ecommerce: Ecommerce;
     private readonly page: Page;
@@ -13,6 +26,10 @@ export class EcommercePage {
     }
 
 
+        /**
+         * Navigate to the Ecommerce admin page.
+         * - Clicks the dashboard E-Commerce entry, selects the 'E-Commerce' option and waits for the page to be visible.
+         */
         async NavigatetoEcommercePage()  {
             logger.info('[EcommercePage] Navigate to Ecommerce Page from Dashboard');
             await this.dashboard.viewECommerceOption.click();
@@ -20,6 +37,11 @@ export class EcommercePage {
             await this.ecommerce.EcommercePage.waitFor({ state: 'visible' });
             logger.info('[EcommercePage] Successfully navigated to Ecommerce Page');
         }
+    /**
+     * Add a new product via the Add Product form.
+     * - Fills product details (name, description, price, stock, category, rating, imageUrl), submits the form and logs success.
+     * - Use unique product names in tests to avoid collisions and to keep tests idempotent.
+     */
     async addProduct(
         name: string,
         description: string,
@@ -45,6 +67,10 @@ export class EcommercePage {
         logger.info(`[EcommercePage] Product "${name}" added successfully`);
     }
 
+    /**
+     * Edit an existing product via the edit dialog or card.
+     * - Updates fields (name, price, stock, rating, image) and saves changes.
+     */
     async editProduct(
         newName: string,
         newPrice: string,
@@ -66,12 +92,12 @@ export class EcommercePage {
         logger.info(`[EcommercePage] Product updated to "${newName}"`);
     }
 
-    //async deleteProduct() {
-    //    logger.info("[EcommercePage] Deleting product...");
-    //    await this.ecommerce.DeleteCardButton.click();
-    //    // optionally confirm modal if exists
-    //    logger.info("[EcommercePage] Product deleted successfully");
-    //}
+   
+    /**
+     * Delete a product by visible name.
+     * - Locates the product card by its text, clicks the Delete button and logs the outcome.
+     * - Tests should assert the absence of the card after deletion to confirm success.
+     */
     async deleteProductByName(productName: string) {
         logger.info(`[EcommercePage] Trying to delete product: ${productName}`);
 
@@ -89,6 +115,10 @@ export class EcommercePage {
     }
 
 
+    /**
+     * Export products list.
+     * - Triggers the export action and logs completion.
+     */
     async exportProducts() {
         logger.info("[EcommercePage] Exporting products...");
         await this.ecommerce.ExportButton.click();
@@ -96,6 +126,10 @@ export class EcommercePage {
     }
 
 
+    /**
+     * Verify that a product card with the expected name exists.
+     * - Reads card titles and throws an Error if the expected product is not found.
+     */
     async verifyProductCard(expectedName: string) {
         // get all titles from the locator defined in Ecommerce class
         const cardTitles = await this.ecommerce.CardTitileVerify.allTextContents();
@@ -113,19 +147,6 @@ export class EcommercePage {
         }
     }
 
-    //async verifyProductNotPresent(expectedName: string) {
-    //    const cardTitles = await this.ecommerce.CardTitileVerify.allTextContents();
-    //    logger.info(`[EcommercePage] Found product cards count: ${cardTitles.length}`);
-
-    //    const found = cardTitles.some(title => title.trim() === expectedName);
-
-    //    if (found) {
-    //        logger.error(`[EcommercePage] ❌ Product "${expectedName}" still present after deletion`);
-    //        throw new Error(`[EcommercePage] Product "${expectedName}" was expected to be deleted but is still visible`);
-    //    } else {
-    //        logger.info(`[EcommercePage] ✅ Product "${expectedName}" is not present (deleted successfully)`);
-    //    }
-    //}
 
 
     }

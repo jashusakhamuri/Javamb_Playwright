@@ -3,6 +3,22 @@ import { AdimnMutualFunds } from '../../locators/ambTestLab/adminMutualFunds';
 import { DashboardPage } from '../../locators/ambTestLab/adminDashBoard'
 import logger from '../../utils/logger';
 
+/**
+ * AdminMutualFundsActions
+ *
+ * Encapsulates admin operations for Mutual Funds management in the AmbTestLab application.
+ * Responsibilities:
+ * - Navigate to the Mutual Funds admin area.
+ * - Add a new fund via the Add Fund form.
+ * - Edit an existing fund via the Edit dialog.
+ * - Delete a selected fund.
+ *
+ * Notes:
+ * - Methods perform UI interactions and log progress; they do not currently assert application state
+ *   beyond Playwright actions. If you need stricter verification, add `expect` assertions inside the
+ *   relevant method or in the calling spec.
+ * - Keep parameter ordering consistent with `TestData/AmbTestData/AddproductData.json`.
+ */
 export class AdminMutualFundsActions {
     readonly locators: AdimnMutualFunds;
     readonly dashboardLocators: DashboardPage;  
@@ -13,10 +29,19 @@ export class AdminMutualFundsActions {
         this.dashboardLocators = new DashboardPage(page);
     }
 
+    /**
+     * Navigate to the Mutual Funds admin section.
+     * - Clicks the Dashboard -> Mutual Funds option to open the admin list.
+     */
     async navigateToMutualFundsSection() {
         logger.info("Navigating to Mutual Funds section...");
         await this.dashboardLocators.DashboardMutualFundsOption.click();
     }
+    /**
+     * Add a new mutual fund.
+     * Parameters map directly to the Add Fund form fields. The method opens the form, fills values,
+     * submits, and logs success. If the UI changes, update locators in `src/locators/ambTestLab/adminMutualFunds`.
+     */
     async addFund(
         name: string,
         code: string,
@@ -55,6 +80,10 @@ export class AdminMutualFundsActions {
         logger.info("✅ Fund added successfully");
     }
 
+    /**
+     * Edit the currently selected fund.
+     * Fills the edit dialog with provided values and updates the fund; logs success on completion.
+     */
     async editFund(
         newName: string,
         newCode: string,
@@ -78,6 +107,10 @@ export class AdminMutualFundsActions {
         logger.info("✅ Fund edited successfully");
     }
 
+    /**
+     * Delete the currently selected fund.
+     * Triggers the delete action (and confirmation if applicable) and logs completion.
+     */
     async deleteFund() {
         logger.info("Deleting fund...");
         await this.locators.DeleteButton.click();

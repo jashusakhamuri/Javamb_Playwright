@@ -2,8 +2,19 @@
 import { Spi_Calculator } from '../../locators/ambTestLab/userSipCalculator';
 import logger from '../../utils/logger';
 
-
-
+/**
+ * UserSipCalculatorActions
+ *
+ * Provides user-focused interactions with the SIP Calculator in AmbTestLab.
+ * Responsibilities:
+ * - Open and interact with the SIP Calculator UI.
+ * - Submit SIP calculation inputs and verify results are shown.
+ * - Scroll and inspect graphs, and remove specific calculation rows when needed.
+ *
+ * Notes:
+ * - Methods include basic `expect` checks to ensure results are visible. For stricter validation,
+ *   add more assertions in the calling specs or extend these helpers.
+ */
 export class UserSipCalculatorActions {
     readonly locators: Spi_Calculator;
     readonly page: Page;
@@ -13,6 +24,10 @@ export class UserSipCalculatorActions {
         this.page = page;
     }
 
+    /**
+     * Open the SIP Calculator.
+     * - Clicks the SIP Calculator nav item and verifies the page title is visible.
+     */
     async openCalculator() {
         logger.info("Navigating to SIP Calculator tab...");
         await this.locators.NAvigateTOSipCaluculator.click();
@@ -20,6 +35,11 @@ export class UserSipCalculatorActions {
         logger.info("✅ SIP Calculator opened successfully.");
     }
 
+    /**
+     * calculateSip
+     * - Fills SIP inputs (monthly amount, years, expected return), submits the form and verifies results.
+     * - Logs the invested amount, future value and estimated returns for debugging.
+     */
     async calculateSip(monthlyAmount: string, years: string, expectedReturn: string) {
         logger.info(`Filling SIP form: Amount=${monthlyAmount}, Years=${years}, Return=${expectedReturn}`);
         await this.locators.minimunAmount.fill(monthlyAmount);
@@ -41,6 +61,10 @@ export class UserSipCalculatorActions {
     }
 
 
+    /**
+     * validateGraphs
+     * - Scrolls the page to render charts and waits briefly to allow rendering; intended for visual validation.
+     */
     async validateGraphs() {
         logger.info("Scrolling through SIP Calculator page to view graphs...");
 
@@ -55,6 +79,10 @@ export class UserSipCalculatorActions {
         logger.info("✅ Finished scrolling through SIP Calculator graphs.");
     }
 
+    /**
+     * deleteCalculation
+     * - Deletes the 3rd SIP calculation row (zero-based index `nth(2)`). Use carefully if rows are fewer than 3.
+     */
     async deleteCalculation() {
         logger.info("Deleting 3rd SIP calculation row...");
         // Playwright uses zero-based index, so nth(2) = 3rd element 
@@ -63,27 +91,13 @@ export class UserSipCalculatorActions {
     }
 
 
-    // 🔥 New helper: repeat SIP calculation with scroll up
-    //async repeatSipCalculation(monthlyAmount: string, years: string, expectedReturn: string, repeatCount: number) {
-    //    for (let i = 0; i < repeatCount; i++) {
-    //        logger.info(`🔄 Repetition ${i + 1}: scrolling up and refilling SIP form...`);
-    //        // Scroll to top before filling again
-    //        await this.page.evaluate(() => window.scrollTo(0, 0));
-    //        // Clear old values await this.locators.minimunAmount.fill('');
-    //        await this.locators.years.fill(''); await this.locators.expectedAnnualReturn.fill('');
-    //        // Fill new values await this.locators.minimunAmount.fill(monthlyAmount);
-    //        await this.locators.years.fill(years); await this.locators.expectedAnnualReturn.fill(expectedReturn);
-    //        // Submit a
-    //        await this.locators.submitbutton.click();
-    //        // Confirm results visible
-    //        await expect(this.locators.totalinvested).toBeVisible();
-    //        await expect(this.locators.estfutureValue).toBeVisible();
-    //        await expect(this.locators.estReturns).toBeVisible();
-    //        logger.info(`✅ Repetition ${i + 1} completed`);
-    //    }
 
 
     // UserSipCalculatorActions.ts
+    /**
+     * repeatSipCalculation
+     * - Repeats SIP calculations for an array of input sets. Scrolls up before each iteration and verifies results.
+     */
     async repeatSipCalculation(data: { monthlyAmount: string; years: string; expectedReturn: string }[]) {
         for (const { monthlyAmount, years, expectedReturn } of data) {
             logger.info(`🔄 Filling SIP form with ${monthlyAmount}, ${years}, ${expectedReturn}`);
