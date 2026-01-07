@@ -1,21 +1,33 @@
+/**
+ * @class FundsPage
+ * @description Locator class for user funds discovery page
+ */
 import { Page, Locator, expect } from '@playwright/test';
 
 export class FundsPage {
      readonly page: Page;
 
-
+    // Navigation tabs
     readonly fundsTab: Locator;
     readonly sipCalculationsTab: Locator;
     readonly dashboardTab: Locator;
     readonly logoutTab: Locator;
     readonly portfolioTab: Locator;
     readonly mutualFundsTab: Locator;
+
+    // Page controls
     readonly refreshButton: Locator;
     readonly cardHolderNames: Locator;
+
+    // Fund actions (test fixtures: Emily Johnson, James Davis)
     readonly addButtonForEmilyJohnson: Locator;
     readonly buyNowButtonForEmilyJohnson: Locator;
+
+    // Pagination
     readonly prevButton: Locator;
     readonly nextButton: Locator;
+
+    // Page verification
     readonly discoverFundsHeading: Locator;
 
     constructor(page: Page) {
@@ -35,9 +47,11 @@ export class FundsPage {
         this.nextButton = page.locator("//nav[@aria-label='Page navigation']//li//a[text()='Next']");
         this.discoverFundsHeading = page.locator("//div[@class='page-heading']//h2[text()='Discover Funds']");
     }
+
     async waitForPortfolioNavigation() {
         await this.page.waitForURL('**/portfolio', { timeout: 60000 });
     }
+
     async waitForCheckout() {
         await this.page.waitForURL('**/checkout.html', { waitUntil: 'networkidle' });
     }
