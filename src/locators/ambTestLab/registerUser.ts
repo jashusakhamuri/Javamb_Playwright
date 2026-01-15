@@ -104,7 +104,7 @@ export class Register {
         // Page Navigation
         // ============================================
         /** Header register button to navigate to registration page */
-        this.GOTORegisterPage = page.locator("//div[@class='header__top__button']//span[contains(text(), 'Register ')]");
+        this.GOTORegisterPage = page.locator("//a[contains(@href,'register')]");
 
         // ============================================
         // Personal Information
