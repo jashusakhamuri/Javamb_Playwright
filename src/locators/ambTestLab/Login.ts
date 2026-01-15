@@ -110,7 +110,7 @@ export class LoginPage {
     // Page Navigation
     // ============================================
     /** Header login button to access the login page */
-    this.loginPageButton = page.locator("//a[contains(@href,'login')]");
+      this.loginPageButton = page.locator("(//a[contains(@href,'login')])[1]");
 
     // ============================================
     // Email/Password Authentication
