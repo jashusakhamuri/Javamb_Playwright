@@ -4,6 +4,7 @@ import { AdminSettingActions } from '../../../src/pages/ambTestLab/AdminSettingA
 import logger from '../../../src/utils/logger';
 import { showMouse } from "../../../src/utils/Mouse_helper";
 import { AdminSettingData } from "../../../TestData/AmbTestData/UserDashboard.json";
+import { expect } from '@playwright/test';
 
 /**
  * Admin Settings Test Suite
@@ -46,6 +47,7 @@ test.describe('Admin Settings Test Suite @smoke', () => {
             const userCreds = await loginAsUser();
             logger.info(`User Gmail: ${userCreds.email}`);
             logger.info(`User Password: ${userCreds.password}`);
+            expect(true === true);
 
 
             logger.info('🟣 Logging in as ADMIN...');

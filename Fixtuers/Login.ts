@@ -300,8 +300,9 @@ export const test = base.extend<AuthFixtures>({
             await login.navigateToLoginPage();
 
             await login.loginWithCredentials(
-                process.env.ADMIN_EMAIL ?? 'ambtestlab@ambmindspace.com',
-                process.env.ADMIN_PASS ?? 'test1234'
+
+                process.env.ADMIN_EMAIL!,
+                process.env.ADMIN_PASS!
             );
         }
 

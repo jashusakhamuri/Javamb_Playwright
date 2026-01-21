@@ -54,8 +54,7 @@ Configs are read from `config/*.properties` via `config/configLoader.ts`.
 
 Example: run tests on a remote runner
 ```powershell
-$env:ENV="qaauto"; $env:REMOTE_WS="ws://192.168.0.220:9000/playwright"; npx playwright test --grep "@regression" --project=chromium --headed
-```
+$env:ENV="qaauto"; $env:REMOTE_WS="ws://192.168.0.237:9000";$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234"; npx playwright test --grep "@smoke" --project=chromium --headed```
 
 ---
 
@@ -128,15 +127,15 @@ npx playwright install
 ```
 - Run all tests (headed):
 ```powershell
-npx playwright test --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test tests/Web_Testing/ambTestLab --headed
 ```
 - Run a single spec:
 ```powershell
-npx playwright test tests/Web_Testing/ambTestLab/LoginRegister.spec.ts --project=chromium --headed
+  $env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test tests/Web_Testing/ambTestLab/LoginRegister.spec.ts --project=chromium --headed
 ```
-- Run by tag:
+- Run by tag: Regression 
 ```powershell
-npx playwright test --grep "@regression" --project=chromium --headed
+     $env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test --grep "@regression" --project=chromium --headed
 ```
 - Run API project:
 ```powershell
@@ -315,38 +314,40 @@ $env:REMOTE_WS="ws://your-remote-server:port/playwright"
 ### Local run (default environment)
 Run all browsers:
 ```powershell
-npx playwright test --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test tests/Web_Testing/ambTestLab --headed
 ```
 
 Run a specific browser:
 ```powershell
-npx playwright test --project=chromium --headed
-npx playwright test --project=firefox --headed
-npx playwright test --project=Edge --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test tests/Web_Testing/ambTestLab  --project=chromium --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ;npx playwright test tests/Web_Testing/ambTestLab  --project=firefox --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test tests/Web_Testing/ambTestLab --project=Edge --headed
 ```
 
 Run a specific spec file:
 ```powershell
-npx playwright test tests/Web_Testing/ambTestLab/LoginRegister.spec.ts --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234" ; npx playwright test tests/Web_Testing/ambTestLab/LoginRegister.spec.ts --headed
 ```
 
 Run tagged tests:
 ```powershell
-npx playwright test --grep "@regression" --headed
+$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234"; npx playwright test --grep "@regression" --headed
 ```
 
 ---
 
 ### Local run with explicit environment
 ```powershell
-$env:ENV="qaauto"; npx playwright test --grep "@smoke" --project=firefox --headed
+$env:ENV="qaauto";$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234"; npx playwright test --grep "@smoke" --project=firefox --headed
 ```
 
 ---
 
 ### Remote run (WebSocket endpoint)
 ```powershell
-$env:ENV="qaauto"; $env:REMOTE_WS="ws://IpAdress:port"; npx playwright test --grep "@regression" --project=chromium --headed
+
+ $env:ENV="qaauto"; $env:REMOTE_WS="ws://192.168.0.237:9000";$env:ADMIN_EMAIL="ambtestlab@ambmindspace.com"; $env:ADMIN_PASS="test1234"; npx playwright test --grep "@smoke" --project=chromium --headed```
+
 ```
 
 ---
