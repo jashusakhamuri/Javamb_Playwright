@@ -47,7 +47,7 @@ import { ADD ,Edit } from "../../../TestData/AmbTestData/AddproductData.json"
 
 // Ecommerce Test Suite
 test.describe('Ecommerce Test Suite @smoke', () => {
-    test('Run full User and Admin flows in one spec', async ({ page, loginAsAdmin }) => {
+    test('Ecommerce flow', async ({ page, loginAsAdmin }) => {
         try {
             // Optional: show red glowing cursor
             await showMouse(page);

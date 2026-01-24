@@ -32,7 +32,7 @@ import { AdminAddFund, AdminEditFund } from "../../../TestData/AmbTestData/Addpr
  */
 
 test.describe('Admin Mutual Funds Test Suite @smoke', () => {
-    test('Run full Admin Mutual Funds flow', async ({ page, loginAsAdmin }) => {
+    test('Admin Mutual Funds flow', async ({ page, loginAsAdmin }) => {
         try {
             await showMouse(page);
 

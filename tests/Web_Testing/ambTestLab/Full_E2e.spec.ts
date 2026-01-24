@@ -61,7 +61,7 @@ import { AdminAddFund } from '../../../TestData/AmbTestData/AddproductData.json'
 
 test.describe('Complete User + Admin End-to-End Journey @regression', () => {
 
-    test('Run full User and Admin flows in one spec', async ({ page, loginAsUser, loginAsAdmin }) => {
+    test('Full E2E Journey', async ({ page, loginAsUser, loginAsAdmin }) => {
 
         logger.info('🚀 Starting Full E2E Journey...');
 

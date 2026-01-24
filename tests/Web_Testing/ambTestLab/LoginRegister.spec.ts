@@ -31,7 +31,7 @@ import { showMouse } from '../../../src/utils/Mouse_helper';
  * 
  */
 
-    test('user can register and login successfully @smoke' , async ({ page, loginAsUser, loginAsAdmin }) => {
+    test('user can register and login  @smoke' , async ({ page, loginAsUser, loginAsAdmin }) => {
         try {
             logger.info(' Starting Login and Registration Tests...');
 

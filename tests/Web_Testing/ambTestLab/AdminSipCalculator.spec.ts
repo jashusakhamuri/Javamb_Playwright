@@ -45,7 +45,7 @@ import testData from "../../../TestData/AmbTestData/UserDashboard.json";
  */
 
 test.describe('SIP Calculator Test Suite @regression', () => {
-    test('Run full SIP Calculator flow', async ({ page, loginAsAdmin, loginAsUser }) => {
+    test('SIP Calculator flow', async ({ page, loginAsAdmin, loginAsUser }) => {
         try {
             await showMouse(page);
 

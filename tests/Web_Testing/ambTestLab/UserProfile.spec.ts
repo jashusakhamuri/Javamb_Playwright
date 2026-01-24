@@ -36,7 +36,7 @@ import testdata from "../../../TestData/AmbTestData/UserDashboard.json";
  *
  */
 
-test("User Profile Edit Test @smoke", async ({ page, loginAsUser }) => {
+test("User Profile Edit  @smoke", async ({ page, loginAsUser }) => {
     logger.info("🚀 Starting User Profile Edit Test...");
     await showMouse(page);
 

@@ -39,8 +39,8 @@ import { expect } from '@playwright/test';
  * - If exports fail, check file-permission and disk space in CI; for selector issues, update `src/locators/`.
  */
 
-test.describe('Admin Settings Test Suite @smoke', () => {
-    test('Run full Admin Settings flow', async ({ page, loginAsAdmin,loginAsUser }) => {
+test.describe('Settings Test Suite @smoke', () => {
+    test('Settings flow', async ({ page, loginAsAdmin,loginAsUser }) => {
         try {
             await showMouse(page);
             logger.info(' Starting Login and Registration Tests...');
