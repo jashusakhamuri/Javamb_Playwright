@@ -1,7 +1,40 @@
 
-# Playwright
+# Node.js dependencies
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+
+# Playwright test artifacts
+test-results/
+playwright-report/
+blob-report/
+
+# Playwright internal folders
+playwright/.cache/
+playwright/.logs/
+playwright/.screenshots/
+playwright/.trace/
+playwright/.videos/
+playwright/.allure-results/
+playwright/.allure-report/
+
+# Allure reports
+allure-results/
+allure-report/
+
+# Environment config
+.env
+
+# Logs
+logs/
+*.log
+
+# VSCode settings
+.vscode/
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# TypeScript build artifacts (if compiled)
+dist/
+out/
+

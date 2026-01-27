@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { Register } from '../../locators/ambTestLab/registerUser';
 import logger from '../../utils/logger';
 
@@ -55,6 +55,8 @@ export class RegisterActions {
         await this.locators.MobileNumber.fill(mobile);
         await this.locators.Location.fill(location);
         await this.locators.Address.fill(address);
+        await expect(this.locators.Email).toHaveValue(email);
+        logger.info(`Email set to: ${email} is expected value`);
         await this.locators.RegisterButton.click();
     }
 
@@ -62,6 +64,8 @@ export class RegisterActions {
      * Navigate to the Login page from the registration view.
      */
     async navigateToLogin() {
+        await expect(this.locators.GoTOLoginPage).toBeVisible();
+        logger.info("Navigating to Login Page from Register Page...");
         await this.locators.GoTOLoginPage.click();
     }
 }

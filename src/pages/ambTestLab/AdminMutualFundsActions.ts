@@ -75,6 +75,9 @@ export class AdminMutualFundsActions {
         await this.locators.Addd5YearReturn.fill(fiveYearReturn);
         await this.locators.AddFundHouse.fill(fundHouse);
         await this.locators.location.fill(location);
+        await expect(this.locators.location).toHaveValue(location);
+        logger.info(`Location field set to: ${location}  is expectedd value`);
+
 
         await this.locators.SaveButton.click();
         logger.info("✅ Fund added successfully");
@@ -101,6 +104,10 @@ export class AdminMutualFundsActions {
         await this.locators.EditCategoryDropDown.selectOption(newCategory);
         await this.locators.Editimage.fill(newImage);
         await this.locators.EditOfferPrice.fill(newOfferPrice);
+        logger.info(`Verifying Offer Price field value...`);
+        await expect(this.locators.EditOfferPrice).toHaveValue(newOfferPrice);
+        logger.info(`✅ Expect check passed: Offer Price field has value '${newOfferPrice}'`);
+
         await this.locators.EditRiskLevel.selectOption(newRiskLevel);
 
         await this.locators.UpdateFund.click();
@@ -114,6 +121,7 @@ export class AdminMutualFundsActions {
     async deleteFund() {
         logger.info("Deleting fund...");
         await this.locators.DeleteButton.click();
+    
         logger.info("✅ Fund deleted successfully");
     }
 }

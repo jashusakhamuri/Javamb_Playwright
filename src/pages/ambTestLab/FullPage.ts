@@ -1,4 +1,4 @@
-﻿import { Page } from '@playwright/test';
+﻿import { expect, Page } from '@playwright/test';
 
 // User imports
 import { FundsPage } from '../../locators/ambTestLab/userFunds';
@@ -55,6 +55,7 @@ class UserActions {
         await this.funds.discoverFundsHeading.waitFor({ state: 'visible' });
 
         logger.info('[FundsPage] Buy + Add Emily Johnson');
+        await expect(this.funds.cardHolderNames.filter({ hasText: 'Emily Johnson' }).first()).toBeVisible();
         await this.funds.buyNowButtonForEmilyJohnson.click();
         await this.funds.addButtonForEmilyJohnson.click();
     }
@@ -72,6 +73,7 @@ class UserActions {
         await this.portfolio.SummaryTotal.waitFor({ state: 'visible' });
 
         //await this.portfolio.ProccerdTOBuyButton.scrollIntoViewIfNeeded();
+        await expect(this.portfolio.ProccerdTOBuyButton).toBeVisible();
         await this.portfolio.ProccerdTOBuyButton.click();
         await this.portfolio.SecurePayment.click();
 
@@ -107,6 +109,8 @@ class UserActions {
 
         await this.profile.EditFirstName.fill('ArjunUpdated');
         await this.profile.EditMobileNo.fill('9876500000');
+        await expect(this.profile.EditMobileNo).toHaveValue('9876500000');
+        logger.info(`Mobile number updated to: 9876500000 is expected value`);
 
         await this.profile.SaveChangeButton.click();
 
@@ -203,8 +207,9 @@ class AdminActions {
         await this.funds.Addd5YearReturn.fill(fiveYearReturn);
         await this.funds.AddFundHouse.fill(fundHouse);
         await this.funds.location.fill(location);
-
-        await this.funds.SaveButton.click();
+        await expect(this.funds.location).toHaveValue(location);
+        logger.info(`Location field set to: ${location}  is expectedd value`);
+        await this.funds.SaveButton.click()
 
         logger.info(`[FundsPage] Fund "${name}" saved successfully.`);
     }
@@ -234,6 +239,8 @@ class AdminActions {
         await this.funds.EditOfferPrice.fill(newOfferPrice);
         await this.funds.EditRiskLevel.selectOption({ label: newRiskLevel });
 
+
+    
         await this.funds.UpdateFund.click();
 
         logger.info(`[AdminMutualFunds] Fund updated successfully to "${newName}".`);
@@ -248,6 +255,7 @@ class AdminActions {
         await this.dashboard.DashboardSettings.click();
 
         await this.settings.ChangeAdminName.fill('AdminUpdated');
+        await expect(this.settings.UpdateButton).toBeVisible();
         await this.settings.UpdateButton.click();
 
         logger.info("Settings updated.");
@@ -271,6 +279,7 @@ class AdminActions {
         // Optionally switch view (Card → Table)
         if (await this.users.CardViewButton.isVisible()) {
             logger.info("Switching from Card view to Table view...");
+            await expect(this.users.CardViewButton).toBeVisible();
             await this.users.CardViewButton.click();
         }
 

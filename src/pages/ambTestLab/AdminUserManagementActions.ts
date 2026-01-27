@@ -78,6 +78,8 @@ export class AdminUserManagementActions {
     async TableViewButton() {
 
         logger.info("Switching back to card view...");
+        await expect(this.locators.CardViewButton).toBeVisible();
+        
         await this.locators.CardViewButton.click();
         logger.info("✅ Switched back to card view.");
     }

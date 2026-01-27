@@ -1,4 +1,4 @@
-﻿import { Page } from '@playwright/test';
+﻿import { expect, Page } from '@playwright/test';
 import { LoginPage } from '../../locators/ambTestLab/Login';
 import logger from '../../utils/logger';
 
@@ -26,6 +26,8 @@ export class LoginActions {
      */
     async navigateToLoginPage() {
         logger.info("Navigating to Login Page...");
+        await expect(this.locators.loginPageButton).toBeVisible();
+        logger.info("✅ Login Page Button is visible.");
         await this.locators.loginPageButton.click();
         logger.info("✅ Navigated to Login Page.");
     }
@@ -39,8 +41,12 @@ export class LoginActions {
     async loginWithCredentials(email: string, password: string) {
         await this.locators.page.waitForLoadState('networkidle');
         await this.locators.emailInput.fill(email);
+        await expect(this.locators.emailInput).toHaveValue(email);
+        logger.info(`Email set to: ${email} is expected value`);
         await this.locators.passwordInput.fill(password);
         await this.locators.page.waitForLoadState('networkidle');
+        await expect(this.locators.loginButton).toBeVisible();
+        logger.info("✅ Login Button is visible.");
         await this.locators.loginButton.click();
     }
 }

@@ -56,6 +56,8 @@ export class EcommercePage {
         await this.ecommerce.ADDTittleCheck.waitFor({ state: "visible" });
 
         await this.ecommerce.AddProductName.fill(name);
+        await expect(this.ecommerce.AddProductName).toHaveValue(name);
+        logger.info(`Product Name set to: ${name} is expected value`);
         await this.ecommerce.AddDescription.fill(description);
         await this.ecommerce.AddProductPrice.fill(price);
         await this.ecommerce.AddProductStock.fill(stock);
@@ -86,7 +88,10 @@ export class EcommercePage {
         await this.ecommerce.EditProductPrice.fill(newPrice);
         await this.ecommerce.EditProductStock.fill(newStock);
         await this.ecommerce.EditProductRating.fill(newRating);
+        await expect(this.ecommerce.EditProductRating).toHaveValue(newRating);
+        logger.info(`Product Rating updated to: ${newRating} is expected value`);
         await this.ecommerce.EditProductImageUrl.fill(newImageUrl);
+
 
         await this.ecommerce.SaveChangesButton.click();
         logger.info(`[EcommercePage] Product updated to "${newName}"`);
@@ -106,8 +111,11 @@ export class EcommercePage {
 
         // Inside that card, find the Delete button
         const deleteButton = productCard.getByRole('button', { name: 'Delete' });
+        await expect(deleteButton).toBeVisible();
+        logger.info(`[EcommercePage] Deleting product: ${productName}`);
 
         await deleteButton.click();
+
         // ✅ Wait until the card disappears
        
 

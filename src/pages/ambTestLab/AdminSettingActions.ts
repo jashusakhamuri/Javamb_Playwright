@@ -46,6 +46,10 @@ export class AdminSettingActions {
     async updateAdminCredentials( name: string) {
         //await this.locators.ChangeAdminEmail.fill(email);
         await this.locators.ChangeAdminName.fill(name);
+        logger.info("Updating admin credentials...");
+        logger.info('Validating updated admin name...');
+        await expect(this.locators.ChangeAdminName).toHaveValue(name);
+        logger.info(`Admin name updated to: ${name} is expected value`);
         await this.locators.UpdateButton.click();
         //await expect(this.page.locator('text=Settings updated successfully')).toBeVisible();
     }

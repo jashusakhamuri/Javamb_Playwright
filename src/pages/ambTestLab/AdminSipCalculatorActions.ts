@@ -73,7 +73,9 @@ export class SipCalculatorActions {
         }
 
         await expect(this.locators.allSipFutureValues.first()).toBeVisible();
+        logger.info("✅ Future values are visible");
         await expect(this.locators.allSipEstimatedReturns.first()).toBeVisible();
+        logger.info("✅ Estimated returns are visible");
     }
 
     /**
