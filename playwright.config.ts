@@ -333,7 +333,7 @@ export default defineConfig({
      *
      * @type {number}
      */
-    timeout: 3_000_000,
+    timeout: 60000,
 
     /**
      * @property {string} testDir
