@@ -1,0 +1,27 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="25.542439">
+<testsuite name="Web_Testing\ambTestLab\LoginRegister.spec.ts" timestamp="2026-09-18T08:15:03.796Z" hostname="chromium" tests="1" failures="0" skipped="0" time="16.528" errors="0">
+<testcase name="user can register and login  @smoke" classname="Web_Testing\ambTestLab\LoginRegister.spec.ts" time="16.528">
+<system-out>
+<![CDATA[[32minfo[39m: [32m Starting Login and Registration Tests...[39m
+[32minfo[39m: [32mNavigating to Register Page...[39m
+[32minfo[39m: [32mEmail set to: Rowland10@yahoo.com is expected value[39m
+[32minfo[39m: [32mNavigating to Login Page from Register Page...[39m
+[32minfo[39m: [32mEmail set to: Rowland10@yahoo.com is expected value[39m
+[32minfo[39m: [32m✅ Login Button is visible.[39m
+[32minfo[39m: [32mUser Gmail: Rowland10@yahoo.com[39m
+[32minfo[39m: [32mUser Password: PjjpXo1PQ4[39m
+[32minfo[39m: [32m User login completed successfully[39m
+[32minfo[39m: [32m Starting Admin Login Test...[39m
+[32minfo[39m: [32mNavigating to Login Page...[39m
+[32minfo[39m: [32m✅ Login Page Button is visible.[39m
+[32minfo[39m: [32m✅ Navigated to Login Page.[39m
+[32minfo[39m: [32mEmail set to: ambtestlab@ambmindspace.com is expected value[39m
+[32minfo[39m: [32m✅ Login Button is visible.[39m
+[32minfo[39m: [32m Admin login completed successfully[39m
+
+[[ATTACHMENT|..\test-results\Web_Testing-ambTestLab-Log-fb6dd-an-register-and-login-smoke-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
